@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-password}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-crm}
+      MYSQL_USER: ${MYSQL_USER:-user}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-password}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: crm-server
+    restart: unless-stopped
+    ports:
+      - "8089:8089"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DATABASE_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-password}
+      DATABASE_NAME: ${MYSQL_DATABASE:-crm}
+      DATABASE_USER: ${MYSQL_USER:-user}
+      DATABASE_PASSWORD: ${MYSQL_PASSWORD:-password}
+      DATABASE_HOST: mysql
+      PORT: 8089
+
+volumes:
+  mysql_data:

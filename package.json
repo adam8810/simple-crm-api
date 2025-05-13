@@ -1,0 +1,38 @@
+{
+  "name": "crm-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "build": "tsc",
+    "migrate:up": "sequelize db:migrate --config src/config/config.js --migrations-path src/migrations --seeders-path src/seeders",
+    "migrate:down": "sequelize db:migrate:undo --config src/config/config.js --migrations-path src/migrations --seeders-path src/seeders",
+    "seed": "sequelize db:seed:all --config src/config/config.js --seeders-path src/seeders"
+  },
+  "keywords": [],
+  "author": "Adam Booth",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.14.1",
+    "reflect-metadata": "^0.2.2",
+    "sequelize": "^6.37.7",
+    "sequelize-typescript": "^2.1.6",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.1",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.15.17",
+    "@types/validator": "^13.15.0",
+    "sequelize-cli": "^6.6.3",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  }
+}
