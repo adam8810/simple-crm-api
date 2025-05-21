@@ -1,6 +1,6 @@
 # Take Home Assessment
 
-See [ASSIGNMENT)(https://github.com/adam8810/simple-crm-api/blob/main/ASSIGNMENT.md) for more details.
+See [ASSIGNMENT](https://github.com/adam8810/simple-crm-api/blob/main/ASSIGNMENT.md) for more details.
 
 ## Setup
 
