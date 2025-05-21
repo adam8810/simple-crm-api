@@ -1,5 +1,7 @@
 # Take Home Assessment
 
+See [ASSIGNMENT)(https://github.com/adam8810/simple-crm-api/blob/main/ASSIGNMENT.md) for more details.
+
 ## Setup
 
 I setup a docker compose environment to make running the application easy. Simply
